@@ -21,9 +21,11 @@
           <a class="uk-accordion-title" href="#"><%= fb.infoData.time + ' - ' + fb.infoData.message %></a>
           <div class="uk-accordion-content">
 
-            <p class="uk-text-lead">
+            <p class="uk-text-lead uk-text-center">
               <%= fb.infoData.message || 'N/A' %>
               <br>
+              Algorithm: <%= fb.infoData.algorithm || 'N/A' %> | 
+              Device: <%= fb.infoData.deviceInfo || 'N/A' %> | 
               User comment: <%= fb.infoData.userComment || 'N/A' %>
             </p>
 

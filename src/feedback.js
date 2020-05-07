@@ -19,6 +19,8 @@ module.exports = async (req, res) => {
   // get data from form
   let message = req.body.message || 'N/A';
   let userComment = req.body.comment || 'N/A';
+  let deviceInfo = req.body.device || 'N/A';
+  let algorithm = req.body.algorithm || 'N/A';
   let photo = req.files.photo || null;
   let screenshot = req.files.screenshot || null;
   let result = req.files.result || null;
@@ -36,6 +38,8 @@ module.exports = async (req, res) => {
   const infoData = {
     message,
     userComment,
+    deviceInfo,
+    algorithm,
     time: moment().format('DD.MM.YY HH:mm:ss'),
   }
 
