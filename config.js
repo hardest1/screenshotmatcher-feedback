@@ -1,8 +1,9 @@
 require('dotenv').config()
 module.exports = {
-  PORT: process.env.PORT ||3000,
+  FEEDBACK_PORT_HTTP: process.env.FEEDBACK_PORT_HTTP || 80,
+  FEEDBACK_PORT_HTTPS: process.env.FEEDBACK_PORT_HTTPS || 443,
   FEEDBACK_DIR: __dirname + '/feedbacks',
-  SECRET: process.env.SECRET,
-  USERNAME: process.env.USER,
-  PASSWORD: process.env.PASSWORD,
+  SECRET: process.env.FEEDBACK_SECRET,
+  USERNAME: process.env.FEEDBACK_USER,
+  PASSWORD: process.env.FEEDBACK_PASSWORD,
 }
