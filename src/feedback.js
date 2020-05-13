@@ -13,11 +13,14 @@ const getEndingByMimeType = (mime) => {
 
 module.exports = async (req, res) => {
 
+
   // exit if wrong secret provided
   if(req.body.secret !== config.SECRET) return res.sendStatus(401);
 
+  // exit if no files are uploaded
+  if(!req.files) return res.sendStatus(400);
+
   // get data from form
-  let message = req.body.message || 'N/A';
   let userComment = req.body.comment || 'N/A';
   let deviceInfo = req.body.device || 'N/A';
   let algorithm = req.body.algorithm || 'N/A';
@@ -36,7 +39,6 @@ module.exports = async (req, res) => {
   // populate info json data
 
   const infoData = {
-    message,
     userComment,
     deviceInfo,
     algorithm,
