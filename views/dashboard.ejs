@@ -18,15 +18,14 @@
 
       <% feedbacks.forEach(fb => { %>
         <li class="">
-          <a class="uk-accordion-title" href="#"><%= fb.infoData.time + ' - ' + fb.infoData.message %></a>
+          <a class="uk-accordion-title" href="#"><%= fb.infoData.time + ' - ' + fb.infoData.userComment %></a>
           <div class="uk-accordion-content">
 
             <p class="uk-text-lead uk-text-center">
-              <%= fb.infoData.message || 'N/A' %>
+              <%= fb.infoData.userComment || 'N/A' %>
               <br>
               Algorithm: <%= fb.infoData.algorithm || 'N/A' %> | 
-              Device: <%= fb.infoData.deviceInfo || 'N/A' %> | 
-              User comment: <%= fb.infoData.userComment || 'N/A' %>
+              Device: <%= fb.infoData.deviceInfo || 'N/A' %>
             </p>
 
             <div class="uk-grid" uk-grid>
