@@ -21,7 +21,7 @@ module.exports = async (req, res) => {
   if(!req.files) return res.sendStatus(400);
 
   // get data from form
-  let userComment = req.body.comment || 'N/A';
+  let userComment = req.body.comment || 'No comment';
   let deviceInfo = req.body.device || 'N/A';
   let algorithm = req.body.algorithm || 'N/A';
   let photo = req.files.photo || null;
