@@ -18,8 +18,19 @@
 
       <% feedbacks.forEach(fb => { %>
         <li class="">
-          <a class="uk-accordion-title" href="#"><%= fb.infoData.time + ' - ' + fb.infoData.algorithm + ' - ' + fb.infoData.deviceInfo + ' - ' + fb.infoData.userComment %></a>
+          <a class="uk-accordion-title" href="#"><%= fb.infoData.time + ' - ' + fb.infoData.algorithm + ' - ' + fb.infoData.deviceInfo %></a>
           <div class="uk-accordion-content">
+            
+            <p class="uk-text-center">
+              Comment:<br/>
+              <span class="uk-text-lead"><%= fb.infoData.userComment %></span>
+            </p>
+
+            <% if(fb.infoData.hasScreenshot){ %>
+            <p class="uk-text-lead uk-text-center">
+              Used screenshot as fallback
+            </p>
+            <% } %>
 
             <div class="uk-grid" uk-grid>
 

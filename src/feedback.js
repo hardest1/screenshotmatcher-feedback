@@ -24,6 +24,7 @@ module.exports = async (req, res) => {
   let userComment = req.body.comment || 'No comment';
   let deviceInfo = req.body.device || 'N/A';
   let algorithm = req.body.algorithm || 'N/A';
+  let hasScreenshot = req.body.hasScreenshot || false;
   let photo = req.files.photo || null;
   let screenshot = req.files.screenshot || null;
   let result = req.files.result || null;
@@ -40,6 +41,7 @@ module.exports = async (req, res) => {
 
   const infoData = {
     userComment,
+    hasScreenshot,
     deviceInfo,
     algorithm,
     time: moment().format('DD.MM.YY HH:mm:ss'),
