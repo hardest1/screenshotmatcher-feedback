@@ -22,6 +22,7 @@ module.exports = async (req, res) => {
 
   // get data from form
   let userComment = req.body.comment || 'No comment';
+  let identifier = req.body.identifier || 'N/A';
   let deviceInfo = req.body.device || 'N/A';
   let algorithm = req.body.algorithm || 'N/A';
   let hasScreenshot = req.body.hasScreenshot || false;
@@ -41,6 +42,7 @@ module.exports = async (req, res) => {
 
   const infoData = {
     userComment,
+    identifier,
     hasScreenshot,
     deviceInfo,
     algorithm,
