@@ -21,6 +21,7 @@ module.exports = async (req, res) => {
   // get data
   let algorithm = req.body.algorithm || 'N/A';
   let speed = req.body.speed || 'N/A';
+  let deviceInfo = req.body.device || 'N/A';
   let hasResult = req.body.hasResult || false;
 
   let identifierHashed = sha1(identifier)
@@ -30,9 +31,11 @@ module.exports = async (req, res) => {
 
   const logData = [
     moment().format('DD.MM.YY HH:mm:ss'),
+    identifier,
     ipAddr,
     hasResult,
     algorithm,
+    deviceInfo,
     speed,
   ]
 
