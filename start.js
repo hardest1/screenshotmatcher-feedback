@@ -30,6 +30,8 @@ const router = require('./src/router');
 
 app.use('/', router);
 
+app.use('/static', express.static(path.join(__dirname, 'static')))
+
 app.use('/feedbacks', express.static(path.join(__dirname, 'feedbacks')))
 
 const httpsServer = https.createServer(sslCredentials, app);

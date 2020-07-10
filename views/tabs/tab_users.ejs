@@ -1,0 +1,97 @@
+
+<h2 class="uk-heading-divider">Users</h2>
+<table id="user-table" class="">
+  <thead>
+    <tr style="font-size: .7rem">
+      <th>Name</th>
+      <th>Matches (SURF/ORB)</th>
+      <th>Fails</th>
+      <th>Feedback</th>
+      <th>Devices</th>
+      <th>Avg. Speed</th>
+      <th>Identifier / Hashed</th>
+    </tr>
+  </thead>
+  <tbody>
+
+    <% for (const userID in users) { %>
+      <% if (users.hasOwnProperty(userID)) { %>
+        
+        
+      <tr>
+        <td>
+          <input maxlength="30" data-id="<%= users[userID].hashedID %>" class="subjectNickname uk-input uk-form-blank" type="text" value="Test Subject" placeholder="Subject Name (local only)">
+        </td>
+        <td><%= users[userID].matches %> (<%= users[userID].surf %>/<%= users[userID].orb %>)</td>
+        <td><b class="uk-text-success"><%= users[userID].matches - users[userID].fails %></b>/<b class="uk-text-danger"><%= users[userID].fails %></b></td>
+        <td><%= users[userID].feedbacks %></td>
+
+        <td class="" style="font-size: .7rem">
+          <% for (const device in users[userID].devices) { %>
+            <% if (users[userID].devices.hasOwnProperty(device)) { %>
+              <% const _element = users[userID].devices[device] %> 
+              <%= device + ': ' %> <b><%= _element %></b><br>
+            <% } %>
+          <% } %>
+        </td>
+
+        <td><%= users[userID].speeds %>ms</td>
+        <td class="uk-text-muted uk-text-small uk-text-lighter">
+          <%= userID %>
+          <br>
+          <%= users[userID].hashedID %>
+        </td>
+      </tr>
+        
+      <% } %>
+    <% } %>
+  </tbody>
+</table>
+
+
+<% for (const userID in users) { %>
+  <% if (users.hasOwnProperty(userID)) { %>
+    
+    
+  <div class="uk-card uk-card-default uk-width-1-1 uk-margin">
+    <div class="uk-card-header">
+        <div class="uk-grid-small uk-flex-middle" uk-grid>
+            <div class="uk-width-auto">
+              <span uk-icon="icon: user; ratio: 2"></span>
+            </div>
+            <div class="uk-width-expand">
+                <h3 class="uk-card-title uk-margin-remove-bottom">
+                  <input maxlength="30" data-id="<%= users[userID].hashedID %>" class="subjectNickname uk-input uk-form-blank uk-form-width-large" type="text" value="Test Subject" placeholder="Subject Name (local only)">
+                </h3>
+                <p class="uk-margin-small-left uk-text-meta uk-margin-remove-top"><b><%= users[userID].matches %> Matches</b> (<b class="uk-text-success"><%= users[userID].matches - users[userID].fails %></b>/<b class="uk-text-danger"><%= users[userID].fails %></b>) - <b><%= users[userID].matches %> Feedback(s)</b> - <%= userID %></p>
+            </div>
+        </div>
+    </div>
+  </div>
+    
+  <% } %>
+<% } %>
+
+<script>
+
+myStorage = window.localStorage;
+
+$(() => {
+
+
+  $(".subjectNickname").each( (i, el) => {
+    const hashedID = el.getAttribute('data-id')
+    const storedName = myStorage.getItem('nickname-' + hashedID)
+    if(storedName && storedName.length) el.value = storedName
+  })
+  
+  $(".subjectNickname").on('input', (ev) => {
+    const inputValue = ev.currentTarget.value
+    const hashedID = ev.currentTarget.getAttribute('data-id')
+    if(inputValue.length && inputValue.length <= 30) myStorage.setItem('nickname-' + hashedID, inputValue)
+  })
+  $('#user-table').DataTable();
+
+});
+
+</script>

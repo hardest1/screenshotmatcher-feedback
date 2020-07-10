@@ -1,77 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Feedback Dashboard</title>
+  <title>ScreenshotMatcher Monitor</title>
 
   <!-- UIkit CSS -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.3.7/dist/css/uikit.min.css" />
+
+  <!-- Custom Theme -->
+  <link rel="stylesheet" href="/static/theme.css" />
+  
+  <!-- jquery -->
+  <script src="/static/jquery-3.5.1.min.js"></script>
+
+  <!-- dataTables -->
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.css">
+  <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.js"></script>
+
 </head>
 <body>
 
-  <main class="uk-container">
+  <!-- Main Container -->
+  <main class="uk-container uk-margin-top">
 
+    <!-- Title -->
     <h3 class="uk-text-center">Dashboard</h3>
 
-    <ul uk-accordion>
+    <!-- Tab Navigation -->
+    <ul 
+      class="uk-flex-center" 
+      uk-tab 
+      uk-switcher="animation: uk-animation-slide-left-medium, uk-animation-slide-right-medium"
+      >
+      <li><a href="#">Users</a></li>
+      <li><a href="#">Feedback</a></li>
+    </ul>
 
-      <% feedbacks.forEach(fb => { %>
-        <li class="">
-          <a class="uk-accordion-title" href="#"><%= fb.infoData.time + ' - ' + fb.infoData.algorithm + ' - ' + fb.infoData.deviceInfo %></a>
-          <div class="uk-accordion-content">
-            
-            <p class="uk-text-center">
-              Comment:<br/>
-              <span class="uk-text-lead"><%= fb.infoData.userComment %></span>
-            </p>
-
-            <% if(fb.infoData.hasScreenshot){ %>
-            <p class="uk-text-lead uk-text-center">
-              Used screenshot as fallback
-            </p>
-            <% } %>
-
-            <div class="uk-grid" uk-grid>
-
-              <div class="uk-text-center uk-width-1-3@m">
-                <p>Photo</p>
-                <% if(fb.infoData.photoFile){ %>
-                <img src="/feedbacks/<%= fb.dir %>/<%= fb.infoData.photoFile %>" alt="Photo">
-                <% } else { %>
-                <p>N/A</p>
-                <% } %>  
-              </div>
-
-              <div class="uk-text-center uk-width-1-3@m">
-                <p>Screenshot</p>
-                <% if(fb.infoData.screenshotFile){ %>
-                <img src="/feedbacks/<%= fb.dir %>/<%= fb.infoData.screenshotFile %>" alt="Screenshot">
-                <% } else { %>
-                <p>N/A</p>
-                <% } %>  
-              </div>
-
-              <div class="uk-text-center uk-width-1-3@m">
-                <p>Result</p>
-                <% if(fb.infoData.resultFile){ %>
-                <img src="/feedbacks/<%= fb.dir %>/<%= fb.infoData.resultFile %>" alt="Result">
-                <% } else { %>
-                <p>N/A</p>
-                <% } %>  
-              </div>
-
-            </div>
-          </div>
-        </li>
-      <% }); %>
+    <!-- Tab Content -->
+    <ul class="uk-switcher uk-margin">
+      <li><%- include("tabs/tab_users.ejs") %></li>
+      <li><%- include("tabs/tab_feedback.ejs") %></li>
     </ul>
 
   </main>
   
   
-  <!-- jquery -->
-  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
   <!-- UIkit JS -->
   <script src="https://cdn.jsdelivr.net/npm/uikit@3.3.7/dist/js/uikit.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/uikit@3.3.7/dist/js/uikit-icons.min.js"></script>

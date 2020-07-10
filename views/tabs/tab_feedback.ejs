@@ -1,0 +1,99 @@
+
+<div class="uk-card uk-card-default uk-card-hover uk-card-body">
+
+  <h2 class="uk-heading-divider">Feedback</h2>
+  
+  <ul uk-accordion>
+
+    <% feedbacks.forEach(fb => { %>
+      <li class="">
+        <a class="uk-accordion-title" href="#">
+          <%= fb.infoData.time + ' - ' + fb.infoData.algorithm %>
+          <span data-id="<%= fb.infoData.hashedID %>" class="nickname"></span>
+        </a>
+        <div class="uk-accordion-content">
+
+          <div class="uk-grid" uk-grid>
+
+            <div class="uk-width-1-2@m">
+
+              <p class="uk-text-center">
+                Full screenshot used:&nbsp;
+    
+                <% if(fb.infoData.hasScreenshot){ %>
+                  <span class="uk-label uk-label-success">Yes</span>
+                <% } else { %>
+                  <span class="uk-label uk-label-danger">No</span>
+                <% } %>
+    
+              </p>
+              
+              <p class="uk-text-center">
+                Comment:<br/>
+                <span class="uk-text-lead"><%= fb.infoData.userComment %></span>
+              </p>
+              
+              <p class="uk-text-center">
+                Device:<br/>
+                <span class="uk-text-meta"><%= fb.infoData.deviceInfo %></span>
+              </p>
+  
+            </div>
+
+            <div class="uk-width-1-2@m">
+
+              <div class="uk-text-center uk-margin" uk-lightbox>
+                <% if(fb.infoData.photoFile){ %>
+                <a class="uk-button uk-button-default" href="/feedbacks/<%= fb.dir %>/<%= fb.infoData.photoFile %>">Show Photo</a>
+                <% } else { %>
+                <p>N/A</p>
+                <% } %>  
+              </div>
+  
+              <div class="uk-text-center uk-margin" uk-lightbox>
+                <% if(fb.infoData.screenshotFile){ %>
+                <a class="uk-button uk-button-default" href="/feedbacks/<%= fb.dir %>/<%= fb.infoData.screenshotFile %>">Show Screenshot</a>
+                <% } else { %>
+                <p>N/A</p>
+                <% } %>  
+              </div>
+  
+              <div class="uk-text-center uk-margin" uk-lightbox>
+                <% if(fb.infoData.resultFile){ %>
+                <a class="uk-button uk-button-default" href="/feedbacks/<%= fb.dir %>/<%= fb.infoData.resultFile %>">Show Result</a>
+                <% } else { %>
+                <p>N/A</p>
+                <% } %>  
+              </div>
+  
+            </div>
+
+          </div>
+
+          
+
+          
+        </div>
+      </li>
+    <% }); %>
+  </ul>
+
+
+</div>
+<script>
+
+myStorage = window.localStorage;
+
+$(() => {
+
+
+  $(".nickname").each( (i, el) => {
+    const hashedID = el.getAttribute('data-id')
+    const storedName = myStorage.getItem('nickname-' + hashedID)
+    if(storedName && storedName.length) el.innerHTML = ' - ' + storedName
+  })
+  
+
+});
+
+</script>
