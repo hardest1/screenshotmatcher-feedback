@@ -63,7 +63,7 @@
                 <h3 class="uk-card-title uk-margin-remove-bottom">
                   <input maxlength="30" data-id="<%= users[userID].hashedID %>" class="subjectNickname uk-input uk-form-blank uk-form-width-large" type="text" value="Test Subject" placeholder="Subject Name (local only)">
                 </h3>
-                <p class="uk-margin-small-left uk-text-meta uk-margin-remove-top"><b><%= users[userID].matches %> Matches</b> (<b class="uk-text-success"><%= users[userID].matches - users[userID].fails %></b>/<b class="uk-text-danger"><%= users[userID].fails %></b>) - <b><%= users[userID].matches %> Feedback(s)</b> - <%= userID %></p>
+                <p class="uk-margin-small-left uk-text-meta uk-margin-remove-top"><b><%= users[userID].matches %> Matches</b> (<b class="uk-text-success"><%= users[userID].matches - users[userID].fails %></b>/<b class="uk-text-danger"><%= users[userID].fails %></b>) - <b><%= users[userID].feedbacks %> Feedback(s)</b> - <%= userID %></p>
             </div>
         </div>
     </div>
