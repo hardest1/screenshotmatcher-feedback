@@ -24,7 +24,7 @@
     "express": "^4.17.1",
     "express-basic-auth": "^1.2.0",
     "express-fileupload": "^1.1.7-alpha.3",
-    "moment": "^2.27.0",
+    "moment": "^2.29.4",
     "neat-csv": "^5.2.0",
     "sha1": "^1.1.1"
   }
